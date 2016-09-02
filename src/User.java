@@ -4,13 +4,12 @@ import java.util.HashMap;
  * Created by halleyfroeb on 8/31/16. User Interface of an ATM Machine
  */
 public class User {
-    public static int options;
+
 
     public static void runProgram() {
 
             System.out.println("Welcome to The Bank of Halley");
             chooseName();
-
             System.out.println("Thank you for using the Bank of Halley, have a nice day :)");
     }
 
@@ -30,8 +29,6 @@ public class User {
     }
 
 
-
-
     public static void chooseName() {
         String name;
         System.out.println("Please enter your name");
@@ -43,14 +40,15 @@ public class User {
 
         if (accounts.containsKey(name.toLowerCase())) {
             System.out.println("Welcome, " + name);
+
         } else if (name.isEmpty()) {
             System.out.println("You must enter a name to continue");
         } else {
             System.out.println("Account not recognized, would you like to make one? [1. Yes Please/ 2. No Thank you]");
-            makeAccount = Main.scanner.nextInt();
+            makeAccount = Integer.parseInt(Main.scanner.nextLine());
             if (makeAccount == 1) {
                 System.out.println("Please Enter your current balance");
-                newBalance = Main.scanner.nextDouble();
+                newBalance = Double.parseDouble(Main.scanner.nextLine());
                 accounts.put(name, newBalance);
                 System.out.println("Welcome, " + name + ", to the bank of Halley!, your current balance is $" + newBalance);
             } else if (makeAccount == 2) {
@@ -67,16 +65,17 @@ public class User {
         public static void chooseOptions (String name) {
             Double balance = accounts.get(name);
             int withdraw;
+            int options;
 
             do {
                 System.out.println("Would you like to...[1.Check my balance/ 2.Withdraw funds/ 3.Remove Account/ 4.Exit]");
-                options = Main.scanner.nextInt();
+                options = Integer.parseInt(Main.scanner.nextLine());
                 if (options == 1) {
                     System.out.println("Your balance is $" + balance);
 
                 } else if (options == 2) {
                     System.out.println("How much money would you like to withdraw?");
-                    withdraw = Main.scanner.nextInt();
+                    withdraw = Integer.parseInt(Main.scanner.nextLine());
                     if (withdraw > 1000) {
                         System.out.println("You have exceeded the amount of money that you can withdraw at one time");
                     } else if (balance < withdraw) {
