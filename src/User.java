@@ -40,9 +40,9 @@ public class User {
 
         if (accounts.containsKey(name.toLowerCase())) {
             System.out.println("Welcome, " + name);
-
         } else if (name.isEmpty()) {
             System.out.println("You must enter a name to continue");
+            name = Main.scanner.nextLine().toLowerCase();
         } else {
             System.out.println("Account not recognized, would you like to make one? [1. Yes Please/ 2. No Thank you]");
             makeAccount = Integer.parseInt(Main.scanner.nextLine());
@@ -53,13 +53,13 @@ public class User {
                 System.out.println("Welcome, " + name + ", to the bank of Halley!, your current balance is $" + newBalance);
             } else if (makeAccount == 2) {
                 System.out.println("Thank you, have a nice day!");
+                chooseName();
             } else {
                 System.out.println("Invalid option!");
             }
         }
         chooseOptions(name);
     }
-
 
 
         public static void chooseOptions (String name) {
